@@ -2,6 +2,7 @@ use std::io::{self, Write};
 
 use anyhow::{Context, Result};
 use clap::Parser;
+use log::{info, warn};
 
 /// Search for a pattern in a file and display the lines that contain it.
 #[derive(Parser)]
@@ -13,13 +14,9 @@ struct Cli {
 }
 
 fn main() -> Result<()> {
-    let pb = indicatif::ProgressBar::new(100);
-
-    for i in 0..100 {
-        pb.println(format!("[+] finished #{}", i));
-        pb.inc(1);
-    }
-    pb.finish_with_message("done");
+    env_logger::init();
+    info!("starting up");
+    warn!("oops, started up");
 
     let args = Cli::parse();
 
